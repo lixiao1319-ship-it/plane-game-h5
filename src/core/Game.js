@@ -111,10 +111,12 @@ export class Game extends EventEmitter {
     }, { passive: false });
 
     this.canvas.addEventListener('touchstart', e => {
+      e.preventDefault();
       const t = e.touches[0];
       const [x, y] = toLocal(t.clientX, t.clientY);
       this._currentScene?.onPointerDown(x, y);
-    });
+      this._currentScene?.onPointerMove(x, y);
+    }, { passive: false });
 
     this.canvas.addEventListener('touchend', e => {
       const t = e.changedTouches[0];

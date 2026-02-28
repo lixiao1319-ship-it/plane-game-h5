@@ -4,26 +4,37 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
+  width: 100%;
+  height: 100%;
   background: #000;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  overflow: hidden;
-  touch-action: none;
 }
 
 #game-container {
   position: relative;
-  width: 375px;
-  height: 667px;
+  /* 手机端铺满屏幕高度，桌面端保持比例 */
+  height: 100vh;
+  aspect-ratio: 375 / 667;
+  max-height: 100vh;
+  max-width: calc(100vh * 375 / 667);
 }
 
 #game-canvas {
   display: block;
   width: 100%;
   height: 100%;
+  cursor: none; /* 桌面调试时隐藏鼠标指针，由飞机充当光标 */
+  image-rendering: pixelated;
 }
 
 /* Loading screen */
@@ -35,7 +46,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   z-index: 100;
 }
 
@@ -59,4 +70,5 @@ body {
   color: #aaa;
   font-size: 13px;
   font-family: Arial, sans-serif;
+  letter-spacing: 0.05em;
 }
