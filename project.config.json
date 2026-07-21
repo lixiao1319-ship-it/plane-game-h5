@@ -1,0 +1,20 @@
+{
+  "description": "三国·乱世雄主 - 抽卡与武将养成 MVP",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": false,
+    "minified": false,
+    "bigPackageSizeSupport": true
+  },
+  "compileType": "game",
+  "libVersion": "3.0.0",
+  "appid": "touristappid",
+  "projectname": "sgz-luanshi-xiongzhu",
+  "condition": {}
+}
