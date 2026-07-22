@@ -2,6 +2,8 @@ const Screen = require('../core/Screen');
 const Button = require('../ui/Button');
 const HeaderBar = require('../ui/HeaderBar');
 const Toast = require('../ui/Toast');
+const { drawCloudScroll, drawCloudDivider } = require('../ui/art');
+const { COLORS, FONT, SPACING, RADIUS } = require('../ui/theme');
 
 function createHomeScene(sceneManager) {
   let buttons = [];
@@ -10,14 +12,14 @@ function createHomeScene(sceneManager) {
     onEnter() {
       const w = Screen.width - 80;
       const x = 40;
-      let y = Screen.height * 0.42;
-      const gap = 24;
-      const h = 76;
+      let y = Screen.height * 0.45;
+      const gap = SPACING.lg;
+      const h = 72;
       buttons = [
         new Button({
           x, y, w, h,
           text: '金币召唤',
-          bg: '#e0842f',
+          gradient: ['#c88820', '#a06810'],
           onTap: () => {
             const GachaScene = require('./GachaScene');
             sceneManager.push(GachaScene(sceneManager));
@@ -26,38 +28,56 @@ function createHomeScene(sceneManager) {
         new Button({
           x, y: y + (h + gap), w, h,
           text: '武将图鉴',
-          bg: '#3a6ff0',
+          gradient: ['#3870b8', '#285090'],
           onTap: () => {
             const RosterScene = require('./RosterScene');
             sceneManager.push(RosterScene(sceneManager));
           },
         }),
       ];
-      y += (h + gap) * 2;
     },
-    update() {},
+    update(dt) {
+      buttons.forEach((b) => b.update(dt));
+      Toast.update(dt);
+    },
     render(ctx) {
+      // Deep indigo gradient background
       const grad = ctx.createLinearGradient(0, 0, 0, Screen.height);
-      grad.addColorStop(0, '#1c1440');
-      grad.addColorStop(1, '#3a1f1f');
+      grad.addColorStop(0, COLORS.bgHome[0]);
+      grad.addColorStop(1, COLORS.bgHome[1]);
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, Screen.width, Screen.height);
 
+      // Decorative top cloud scroll
+      drawCloudScroll(ctx, Screen.width / 2 - 100, 80, 200, 'rgba(212,175,55,0.3)');
+
+      // Title — large golden characters
       ctx.textAlign = 'center';
-      ctx.fillStyle = '#ffdca6';
-      ctx.font = 'bold 44px sans-serif';
+      ctx.fillStyle = COLORS.textGold;
+      ctx.font = 'bold 44px serif';
       ctx.fillText('三国·乱世雄主', Screen.width / 2, Screen.height * 0.22);
-      ctx.font = '22px sans-serif';
-      ctx.fillStyle = '#cfc3ff';
-      ctx.fillText('MVP 抽卡·养成 试玩版', Screen.width / 2, Screen.height * 0.22 + 40);
+
+      // Subtitle
+      ctx.font = '16px serif';
+      ctx.fillStyle = COLORS.textMuted;
+      ctx.fillText('MVP 抽卡·养成 试玩版', Screen.width / 2, Screen.height * 0.22 + 36);
+
+      // Cloud divider under title
+      drawCloudDivider(ctx, Screen.width / 2 - 60, Screen.height * 0.22 + 56, 120);
+
+      // Bottom decorative clouds
+      drawCloudScroll(ctx, 40, Screen.height - 100, 120, 'rgba(212,175,55,0.15)');
+      drawCloudScroll(ctx, Screen.width - 160, Screen.height - 80, 120, 'rgba(212,175,55,0.15)');
 
       buttons.forEach((b) => b.render(ctx));
       HeaderBar.render(ctx);
       Toast.render(ctx);
     },
-    onTouchStart() {},
+    onTouchStart(x, y) {
+      buttons.forEach((b) => b.handleTouchStart(x, y));
+    },
     onTouchEnd(x, y) {
-      for (const b of buttons) if (b.handleTap(x, y)) break;
+      buttons.forEach((b) => b.handleTouchEnd(x, y));
     },
     onResume() {},
   };

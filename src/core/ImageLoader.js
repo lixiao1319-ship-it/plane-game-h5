@@ -50,4 +50,24 @@ function requestPortrait(assetId) {
   return entry;
 }
 
-module.exports = { requestPortrait };
+// Preloads portraits for a list of heroes so they are ready when the scene
+// renders. Call this in onEnter before the first render to avoid placeholder
+// flicker. Only loads heroes whose art is not already cached.
+function preloadPortraits(heroList) {
+  if (!canLoadImages()) return;
+  for (const hero of heroList) {
+    if (!cache[hero.assetId]) {
+      requestPortrait(hero.assetId);
+    }
+  }
+}
+
+// Returns true if every hero in the list has a finished load (loaded or failed).
+function isPreloadComplete(heroList) {
+  return heroList.every((hero) => {
+    const entry = cache[hero.assetId];
+    return entry && entry.status !== 'pending';
+  });
+}
+
+module.exports = { requestPortrait, preloadPortraits, isPreloadComplete };
