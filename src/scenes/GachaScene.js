@@ -2,19 +2,18 @@ const Screen = require('../core/Screen');
 const Button = require('../ui/Button');
 const HeaderBar = require('../ui/HeaderBar');
 const Toast = require('../ui/Toast');
-const { drawHeroChip } = require('../ui/HeroChip');
-const { drawInkPanel, drawCloudDivider } = require('../ui/art');
+const { drawCloudDivider } = require('../ui/art');
 const { roundRect } = require('../ui/draw');
 const GachaSystem = require('../systems/GachaSystem');
 const PlayerData = require('../systems/PlayerData');
 const ImageLoader = require('../core/ImageLoader');
 const { COLORS, FONT, SPACING, RADIUS } = require('../ui/theme');
 const C = require('../data/constants');
+const heroes = require('../data/heroes');
 
 function createGachaScene(sceneManager) {
   let buttons = [];
-  const featured = GachaSystem.pools.orange.slice(0, 4);
-  let featuredRects = [];
+  let mosaicHeroes = [];
 
   function layout() {
     const w = (Screen.width - 32 - 16) / 2;
@@ -29,9 +28,9 @@ function createGachaScene(sceneManager) {
       }),
       new Button({
         x: 16 + w + 16, y, w, h,
-        text: `十连 (${C.GACHA.tenDrawCost}金)`,
+        text: `五连 (${C.GACHA.fiveDrawCost}金)`,
         gradient: ['#b03030', '#801818'],
-        onTap: () => doDraw(10),
+        onTap: () => doDraw(5),
       }),
       new Button({
         x: 16, y: Screen.height - 48, w: 80, h: 32,
@@ -41,6 +40,10 @@ function createGachaScene(sceneManager) {
         onTap: () => sceneManager.pop(),
       }),
     ];
+
+    // Pick 8 random heroes for the mosaic background
+    const shuffled = [...heroes].sort(() => Math.random() - 0.5);
+    mosaicHeroes = shuffled.slice(0, 8);
   }
 
   function doDraw(count) {
@@ -53,10 +56,79 @@ function createGachaScene(sceneManager) {
     sceneManager.push(GachaResultScene(sceneManager, result.results));
   }
 
+  // Draws the 8-hero portrait mosaic as a background panel
+  function drawMosaic(ctx, x, y, w, h) {
+    const cols = 4;
+    const rows = 2;
+    const cellW = w / cols;
+    const cellH = h / rows;
+
+    // Dark backdrop
+    ctx.fillStyle = 'rgba(0,0,0,0.4)';
+    roundRect(ctx, x, y, w, h, RADIUS.medium);
+    ctx.fill();
+
+    // Draw each hero portrait in grid
+    for (let i = 0; i < mosaicHeroes.length; i++) {
+      const hero = mosaicHeroes[i];
+      const col = i % cols;
+      const row = Math.floor(i / cols);
+      const cx = x + col * cellW;
+      const cy = y + row * cellH;
+
+      const portrait = ImageLoader.requestPortrait(hero.assetId);
+      if (portrait.status === 'loaded') {
+        ctx.save();
+        roundRect(ctx, cx + 2, cy + 2, cellW - 4, cellH - 4, RADIUS.small);
+        ctx.clip();
+        drawCoverImage(ctx, portrait.image, cx + 2, cy + 2, cellW - 4, cellH - 4);
+        ctx.restore();
+      } else {
+        // Placeholder with rank color
+        const rankInfo = COLORS.rank[hero.rank];
+        const grad = ctx.createLinearGradient(cx, cy, cx, cy + cellH);
+        grad.addColorStop(0, rankInfo.gradient[0]);
+        grad.addColorStop(1, rankInfo.gradient[1]);
+        ctx.fillStyle = grad;
+        roundRect(ctx, cx + 2, cy + 2, cellW - 4, cellH - 4, RADIUS.small);
+        ctx.fill();
+
+        ctx.fillStyle = 'rgba(255,255,255,0.85)';
+        ctx.font = `bold ${Math.floor(cellW * 0.35)}px serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(hero.name[0], cx + cellW / 2, cy + cellH / 2);
+      }
+
+      // Subtle gold border on each cell
+      ctx.strokeStyle = 'rgba(212,175,55,0.25)';
+      ctx.lineWidth = 1;
+      roundRect(ctx, cx + 2, cy + 2, cellW - 4, cellH - 4, RADIUS.small);
+      ctx.stroke();
+    }
+
+    // Outer gold frame
+    ctx.strokeStyle = 'rgba(212,175,55,0.4)';
+    ctx.lineWidth = 2;
+    roundRect(ctx, x, y, w, h, RADIUS.medium);
+    ctx.stroke();
+  }
+
+  function drawCoverImage(ctx, image, dx, dy, dw, dh) {
+    const iw = image.width;
+    const ih = image.height;
+    const scale = Math.max(dw / iw, dh / ih);
+    const sw = dw / scale;
+    const sh = dh / scale;
+    const sx = (iw - sw) / 2;
+    const sy = (ih - sh) / 2;
+    ctx.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
+  }
+
   return {
     onEnter() {
       layout();
-      ImageLoader.preloadPortraits(featured);
+      ImageLoader.preloadPortraits(mosaicHeroes);
     },
     onResume() {
       layout();
@@ -81,14 +153,20 @@ function createGachaScene(sceneManager) {
 
       drawCloudDivider(ctx, Screen.width / 2 - 50, 115, 100);
 
-      // Rate info panel with ink-wash style
+      // Rate info panel
       const g = PlayerData.state.gacha;
       const panelX = 20;
       const panelW = Screen.width - 40;
       const panelY = 135;
-      const panelH = 60;
+      const panelH = 56;
 
-      drawInkPanel(ctx, panelX, panelY, panelW, panelH, RADIUS.small);
+      ctx.fillStyle = 'rgba(0,0,0,0.35)';
+      roundRect(ctx, panelX, panelY, panelW, panelH, RADIUS.small);
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(212,175,55,0.25)';
+      ctx.lineWidth = 1.5;
+      roundRect(ctx, panelX, panelY, panelW, panelH, RADIUS.small);
+      ctx.stroke();
 
       ctx.font = '13px sans-serif';
       ctx.fillStyle = COLORS.textMuted;
@@ -100,21 +178,21 @@ function createGachaScene(sceneManager) {
       ctx.fillText(
         `距下次紫色保底 ${Math.max(0, C.GACHA.purplePity - g.sincePurpleOrAbove)} 抽`,
         Screen.width / 2,
-        panelY + 42
+        panelY + 40
       );
 
-      // Featured heroes section
+      // 8-hero mosaic background panel
+      const mosaicX = 20;
+      const mosaicY = 210;
+      const mosaicW = Screen.width - 40;
+      const mosaicH = 280;
+      drawMosaic(ctx, mosaicX, mosaicY, mosaicW, mosaicH);
+
+      // Hint text
       ctx.font = '13px serif';
       ctx.fillStyle = COLORS.textMuted;
-      ctx.fillText('— 传说武将 · 点击详情 —', Screen.width / 2, 215);
-
-      const chipW = (Screen.width - 32 - 3 * 12) / 4;
-      const chipH = 145;
-      featuredRects = featured.map((hero, i) => {
-        const x = 16 + i * (chipW + 12);
-        drawHeroChip(ctx, hero, x, 225, chipW, chipH);
-        return { x, y: 225, w: chipW, h: chipH, hero };
-      });
+      ctx.textAlign = 'center';
+      ctx.fillText('— 消耗金币，召唤传说武将 —', Screen.width / 2, mosaicY + mosaicH + 25);
 
       buttons.forEach((b) => b.render(ctx));
       HeaderBar.render(ctx);
@@ -124,14 +202,7 @@ function createGachaScene(sceneManager) {
       buttons.forEach((b) => b.handleTouchStart(x, y));
     },
     onTouchEnd(x, y) {
-      for (const b of buttons) if (b.handleTouchEnd(x, y)) return;
-      const hit = featuredRects.find(
-        (r) => x >= r.x && x <= r.x + r.w && y >= r.y && y <= r.y + r.h
-      );
-      if (hit) {
-        const HeroDetailScene = require('./HeroDetailScene');
-        sceneManager.push(HeroDetailScene(sceneManager, hit.hero));
-      }
+      buttons.forEach((b) => b.handleTouchEnd(x, y));
     },
   };
 }

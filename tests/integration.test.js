@@ -52,11 +52,11 @@ test('Flow: Home -> Gacha -> Draw -> Result -> Back', () => {
   assertEqual(sm.stack.length, 2);
   renderScene(sm.top());
 
-  // 3. Perform a 10-draw
+  // 3. Perform a 5-draw
   const beforeGold = PlayerData.state.gold;
-  const result = GachaSystem.draw(10);
-  assertEqual(result.results.length, 10);
-  assertEqual(PlayerData.state.gold, beforeGold - C.GACHA.tenDrawCost);
+  const result = GachaSystem.draw(5);
+  assertEqual(result.results.length, 5);
+  assertEqual(PlayerData.state.gold, beforeGold - C.GACHA.fiveDrawCost);
 
   // 4. Show result scene
   const createResult = require('../src/scenes/GachaResultScene');

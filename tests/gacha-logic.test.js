@@ -37,12 +37,12 @@ test('draw consumes gold', () => {
   assertEqual(result.results.length, 1);
 });
 
-test('draw 10 consumes discounted gold', () => {
+test('draw 5 consumes discounted gold', () => {
   resetPlayer();
   const before = PlayerData.state.gold;
-  const result = GachaSystem.draw(10);
-  assertEqual(PlayerData.state.gold, before - C.GACHA.tenDrawCost);
-  assertEqual(result.results.length, 10);
+  const result = GachaSystem.draw(5);
+  assertEqual(PlayerData.state.gold, before - C.GACHA.fiveDrawCost);
+  assertEqual(result.results.length, 5);
 });
 
 test('draw fails with insufficient gold', () => {

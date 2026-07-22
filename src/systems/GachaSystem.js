@@ -56,9 +56,9 @@ function drawOne() {
   return Object.assign({ hero }, result);
 }
 
-// count: 1 or 10. Returns { results, cost } or null if insufficient gold.
+// count: 1 or 5. Returns { results, cost } or null if insufficient gold.
 function draw(count) {
-  const cost = count === 10 ? C.GACHA.tenDrawCost : C.GACHA.costPerDraw * count;
+  const cost = count === 5 ? C.GACHA.fiveDrawCost : C.GACHA.costPerDraw * count;
   if (!PlayerData.canSpendGold(cost)) return null;
   PlayerData.spendGold(cost);
   const results = [];

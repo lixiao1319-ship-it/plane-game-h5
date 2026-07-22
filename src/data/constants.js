@@ -28,7 +28,7 @@ module.exports = {
   // 抽卡
   GACHA: {
     costPerDraw: 200,
-    tenDrawCost: 1800, // 9折
+    fiveDrawCost: 900, // 5连9折
     baseRate: { orange: 0.02, purple: 0.25, blue: 0.73 },
     orangeRateStep: 0.004, // 每次未出橙色 +0.4%
     orangePity: 70, // 70抽必出橙色
@@ -50,8 +50,8 @@ module.exports = {
 
   // 初始玩家资源（新手引导用，可按需调整）
   STARTING_RESOURCES: {
-    gold: 2000,
-    yuanbao: 300,
+    gold: 5000000,
+    yuanbao: 99999300,
     stamina: 60,
   },
 };

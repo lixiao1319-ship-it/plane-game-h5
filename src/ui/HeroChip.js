@@ -98,12 +98,13 @@ function drawHeroChip(ctx, hero, x, y, w, h, opts) {
   ctx.textBaseline = 'middle';
   ctx.fillText(hero.name, x + w / 2, py + portraitSize + 18);
 
-  // Stars
+  // Stars — fit within card width
   if (opts.star !== undefined && opts.star > 0) {
-    const starSize = 13;
+    const maxStarW = w - 16;
+    const starSize = Math.min(12, (maxStarW - (C.MAX_STAR - 1) * 2) / C.MAX_STAR);
     const starGap = 2;
-    const totalW = opts.star * (starSize + starGap) - starGap;
-    drawStars(ctx, x + (w - totalW) / 2, py + portraitSize + 28, opts.star, C.MAX_STAR, starSize, starGap);
+    const totalW = C.MAX_STAR * (starSize + starGap) - starGap;
+    drawStars(ctx, x + (w - totalW) / 2, py + portraitSize + 26, opts.star, C.MAX_STAR, starSize, starGap);
   }
 
   // Tag
