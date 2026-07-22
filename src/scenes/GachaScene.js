@@ -10,6 +10,7 @@ const C = require('../data/constants');
 function createGachaScene(sceneManager) {
   let buttons = [];
   const featured = GachaSystem.pools.orange.slice(0, 4);
+  let featuredRects = [];
 
   function layout() {
     const w = (Screen.width - 32 - 16) / 2;
@@ -81,12 +82,13 @@ function createGachaScene(sceneManager) {
 
       ctx.font = '16px sans-serif';
       ctx.fillStyle = '#8f86c9';
-      ctx.fillText('传说武将（部分展示）', Screen.width / 2, 210);
+      ctx.fillText('传说武将（部分展示，点击查看详情）', Screen.width / 2, 210);
       const chipW = (Screen.width - 32 - 3 * 12) / 4;
       const chipH = 130;
-      featured.forEach((hero, i) => {
+      featuredRects = featured.map((hero, i) => {
         const x = 16 + i * (chipW + 12);
         drawHeroChip(ctx, hero, x, 225, chipW, chipH);
+        return { x, y: 225, w: chipW, h: chipH, hero };
       });
 
       buttons.forEach((b) => b.render(ctx));
@@ -94,7 +96,14 @@ function createGachaScene(sceneManager) {
       Toast.render(ctx);
     },
     onTouchEnd(x, y) {
-      for (const b of buttons) if (b.handleTap(x, y)) break;
+      for (const b of buttons) if (b.handleTap(x, y)) return;
+      const hit = featuredRects.find(
+        (r) => x >= r.x && x <= r.x + r.w && y >= r.y && y <= r.y + r.h
+      );
+      if (hit) {
+        const HeroDetailScene = require('./HeroDetailScene');
+        sceneManager.push(HeroDetailScene(sceneManager, hit.hero));
+      }
     },
   };
 }
