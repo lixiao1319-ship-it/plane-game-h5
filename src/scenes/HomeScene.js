@@ -12,9 +12,9 @@ function createHomeScene(sceneManager) {
     onEnter() {
       const w = Screen.width - 80;
       const x = 40;
-      let y = Screen.height * 0.45;
+      let y = Screen.height * 0.38;
       const gap = SPACING.lg;
-      const h = 72;
+      const h = 68;
       buttons = [
         new Button({
           x, y, w, h,
@@ -27,6 +27,15 @@ function createHomeScene(sceneManager) {
         }),
         new Button({
           x, y: y + (h + gap), w, h,
+          text: '我的武将',
+          gradient: ['#58a858', '#387038'],
+          onTap: () => {
+            const MyHeroesScene = require('./MyHeroesScene');
+            sceneManager.push(MyHeroesScene(sceneManager));
+          },
+        }),
+        new Button({
+          x, y: y + (h + gap) * 2, w, h,
           text: '武将图鉴',
           gradient: ['#3870b8', '#285090'],
           onTap: () => {

@@ -122,7 +122,7 @@ module.exports = [
   },
   {
     "id": "周瑜",
-    "assetId": "h005",
+    "assetId": "h006",
     "name": "周瑜",
     "camp": "吴",
     "rank": "orange",
@@ -152,7 +152,7 @@ module.exports = [
   },
   {
     "id": "关羽",
-    "assetId": "h006",
+    "assetId": "h007",
     "name": "关羽",
     "camp": "蜀",
     "rank": "orange",
@@ -182,7 +182,7 @@ module.exports = [
   },
   {
     "id": "张飞",
-    "assetId": "h007",
+    "assetId": "h008",
     "name": "张飞",
     "camp": "蜀",
     "rank": "orange",
@@ -212,7 +212,7 @@ module.exports = [
   },
   {
     "id": "吕布",
-    "assetId": "h008",
+    "assetId": "h009",
     "name": "吕布",
     "camp": "群",
     "rank": "orange",
@@ -242,7 +242,7 @@ module.exports = [
   },
   {
     "id": "司马懿",
-    "assetId": "h009",
+    "assetId": "h016",
     "name": "司马懿",
     "camp": "魏",
     "rank": "orange",
@@ -272,7 +272,7 @@ module.exports = [
   },
   {
     "id": "赵云",
-    "assetId": "h010",
+    "assetId": "h001",
     "name": "赵云",
     "camp": "蜀",
     "rank": "orange",
@@ -302,7 +302,7 @@ module.exports = [
   },
   {
     "id": "典韦",
-    "assetId": "h011",
+    "assetId": "h002",
     "name": "典韦",
     "camp": "魏",
     "rank": "orange",
@@ -332,7 +332,7 @@ module.exports = [
   },
   {
     "id": "夏侯惇",
-    "assetId": "h012",
+    "assetId": "h003",
     "name": "夏侯惇",
     "camp": "魏",
     "rank": "orange",
@@ -362,7 +362,7 @@ module.exports = [
   },
   {
     "id": "孙策",
-    "assetId": "h013",
+    "assetId": "h004",
     "name": "孙策",
     "camp": "吴",
     "rank": "orange",
@@ -392,7 +392,7 @@ module.exports = [
   },
   {
     "id": "陆逊",
-    "assetId": "h014",
+    "assetId": "h006",
     "name": "陆逊",
     "camp": "吴",
     "rank": "orange",
@@ -422,7 +422,7 @@ module.exports = [
   },
   {
     "id": "孙坚",
-    "assetId": "h015",
+    "assetId": "h007",
     "name": "孙坚",
     "camp": "吴",
     "rank": "orange",
@@ -452,7 +452,7 @@ module.exports = [
   },
   {
     "id": "张辽",
-    "assetId": "h016",
+    "assetId": "h008",
     "name": "张辽",
     "camp": "魏",
     "rank": "purple",
@@ -482,7 +482,7 @@ module.exports = [
   },
   {
     "id": "郭嘉",
-    "assetId": "h017",
+    "assetId": "h009",
     "name": "郭嘉",
     "camp": "魏",
     "rank": "purple",
@@ -512,7 +512,7 @@ module.exports = [
   },
   {
     "id": "庞统",
-    "assetId": "h018",
+    "assetId": "h016",
     "name": "庞统",
     "camp": "蜀",
     "rank": "purple",
@@ -542,7 +542,7 @@ module.exports = [
   },
   {
     "id": "马超",
-    "assetId": "h019",
+    "assetId": "h001",
     "name": "马超",
     "camp": "蜀",
     "rank": "purple",
@@ -572,7 +572,7 @@ module.exports = [
   },
   {
     "id": "黄忠",
-    "assetId": "h020",
+    "assetId": "h002",
     "name": "黄忠",
     "camp": "蜀",
     "rank": "purple",
@@ -602,7 +602,7 @@ module.exports = [
   },
   {
     "id": "魏延",
-    "assetId": "h021",
+    "assetId": "h003",
     "name": "魏延",
     "camp": "蜀",
     "rank": "purple",
@@ -632,7 +632,7 @@ module.exports = [
   },
   {
     "id": "太史慈",
-    "assetId": "h022",
+    "assetId": "h004",
     "name": "太史慈",
     "camp": "吴",
     "rank": "purple",
@@ -662,7 +662,7 @@ module.exports = [
   },
   {
     "id": "甘宁",
-    "assetId": "h023",
+    "assetId": "h006",
     "name": "甘宁",
     "camp": "吴",
     "rank": "purple",
@@ -692,7 +692,7 @@ module.exports = [
   },
   {
     "id": "周泰",
-    "assetId": "h024",
+    "assetId": "h007",
     "name": "周泰",
     "camp": "吴",
     "rank": "purple",
@@ -722,7 +722,7 @@ module.exports = [
   },
   {
     "id": "貂蝉",
-    "assetId": "h025",
+    "assetId": "h008",
     "name": "貂蝉",
     "camp": "群",
     "rank": "purple",
@@ -752,7 +752,7 @@ module.exports = [
   },
   {
     "id": "袁绍",
-    "assetId": "h026",
+    "assetId": "h009",
     "name": "袁绍",
     "camp": "群",
     "rank": "purple",
@@ -782,7 +782,7 @@ module.exports = [
   },
   {
     "id": "吕蒙",
-    "assetId": "h027",
+    "assetId": "h016",
     "name": "吕蒙",
     "camp": "吴",
     "rank": "purple",
@@ -812,7 +812,7 @@ module.exports = [
   },
   {
     "id": "荀彧",
-    "assetId": "h028",
+    "assetId": "h001",
     "name": "荀彧",
     "camp": "魏",
     "rank": "purple",
@@ -842,7 +842,7 @@ module.exports = [
   },
   {
     "id": "姜维",
-    "assetId": "h029",
+    "assetId": "h002",
     "name": "姜维",
     "camp": "蜀",
     "rank": "purple",
@@ -872,7 +872,7 @@ module.exports = [
   },
   {
     "id": "鲁肃",
-    "assetId": "h030",
+    "assetId": "h003",
     "name": "鲁肃",
     "camp": "吴",
     "rank": "purple",
@@ -902,7 +902,7 @@ module.exports = [
   },
   {
     "id": "许褚",
-    "assetId": "h031",
+    "assetId": "h004",
     "name": "许褚",
     "camp": "魏",
     "rank": "purple",
@@ -932,7 +932,7 @@ module.exports = [
   },
   {
     "id": "张郃",
-    "assetId": "h032",
+    "assetId": "h006",
     "name": "张郃",
     "camp": "魏",
     "rank": "purple",
@@ -962,7 +962,7 @@ module.exports = [
   },
   {
     "id": "曹仁",
-    "assetId": "h033",
+    "assetId": "h007",
     "name": "曹仁",
     "camp": "魏",
     "rank": "purple",
@@ -992,7 +992,7 @@ module.exports = [
   },
   {
     "id": "袁术",
-    "assetId": "h034",
+    "assetId": "h008",
     "name": "袁术",
     "camp": "群",
     "rank": "purple",
@@ -1022,7 +1022,7 @@ module.exports = [
   },
   {
     "id": "公孙瓒",
-    "assetId": "h035",
+    "assetId": "h009",
     "name": "公孙瓒",
     "camp": "群",
     "rank": "purple",
@@ -1052,7 +1052,7 @@ module.exports = [
   },
   {
     "id": "孟获",
-    "assetId": "h036",
+    "assetId": "h016",
     "name": "孟获",
     "camp": "群",
     "rank": "purple",
@@ -1081,7 +1081,7 @@ module.exports = [
   },
   {
     "id": "祝融",
-    "assetId": "h037",
+    "assetId": "h001",
     "name": "祝融",
     "camp": "群",
     "rank": "purple",
@@ -1111,7 +1111,7 @@ module.exports = [
   },
   {
     "id": "黄月英",
-    "assetId": "h038",
+    "assetId": "h002",
     "name": "黄月英",
     "camp": "蜀",
     "rank": "purple",
@@ -1141,7 +1141,7 @@ module.exports = [
   },
   {
     "id": "关兴",
-    "assetId": "h039",
+    "assetId": "h003",
     "name": "关兴",
     "camp": "蜀",
     "rank": "purple",
@@ -1171,7 +1171,7 @@ module.exports = [
   },
   {
     "id": "张苞",
-    "assetId": "h040",
+    "assetId": "h004",
     "name": "张苞",
     "camp": "蜀",
     "rank": "purple",
@@ -1201,7 +1201,7 @@ module.exports = [
   },
   {
     "id": "马岱",
-    "assetId": "h041",
+    "assetId": "h006",
     "name": "马岱",
     "camp": "蜀",
     "rank": "purple",
@@ -1231,7 +1231,7 @@ module.exports = [
   },
   {
     "id": "夏侯渊",
-    "assetId": "h042",
+    "assetId": "h007",
     "name": "夏侯渊",
     "camp": "魏",
     "rank": "purple",
@@ -1261,7 +1261,7 @@ module.exports = [
   },
   {
     "id": "大乔",
-    "assetId": "h043",
+    "assetId": "h008",
     "name": "大乔",
     "camp": "吴",
     "rank": "blue",
@@ -1290,7 +1290,7 @@ module.exports = [
   },
   {
     "id": "小乔",
-    "assetId": "h044",
+    "assetId": "h009",
     "name": "小乔",
     "camp": "吴",
     "rank": "blue",
@@ -1320,7 +1320,7 @@ module.exports = [
   },
   {
     "id": "曹洪",
-    "assetId": "h045",
+    "assetId": "h016",
     "name": "曹洪",
     "camp": "魏",
     "rank": "blue",
@@ -1350,7 +1350,7 @@ module.exports = [
   },
   {
     "id": "荀攸",
-    "assetId": "h046",
+    "assetId": "h001",
     "name": "荀攸",
     "camp": "魏",
     "rank": "blue",
@@ -1380,7 +1380,7 @@ module.exports = [
   },
   {
     "id": "程昱",
-    "assetId": "h047",
+    "assetId": "h002",
     "name": "程昱",
     "camp": "魏",
     "rank": "blue",
@@ -1410,7 +1410,7 @@ module.exports = [
   },
   {
     "id": "徐晃",
-    "assetId": "h048",
+    "assetId": "h003",
     "name": "徐晃",
     "camp": "魏",
     "rank": "blue",
@@ -1440,7 +1440,7 @@ module.exports = [
   },
   {
     "id": "曹丕",
-    "assetId": "h049",
+    "assetId": "h004",
     "name": "曹丕",
     "camp": "魏",
     "rank": "blue",
@@ -1470,7 +1470,7 @@ module.exports = [
   },
   {
     "id": "贾诩",
-    "assetId": "h050",
+    "assetId": "h006",
     "name": "贾诩",
     "camp": "魏",
     "rank": "blue",
@@ -1500,7 +1500,7 @@ module.exports = [
   },
   {
     "id": "于禁",
-    "assetId": "h051",
+    "assetId": "h007",
     "name": "于禁",
     "camp": "魏",
     "rank": "blue",
@@ -1530,7 +1530,7 @@ module.exports = [
   },
   {
     "id": "王平",
-    "assetId": "h052",
+    "assetId": "h008",
     "name": "王平",
     "camp": "蜀",
     "rank": "blue",
@@ -1560,7 +1560,7 @@ module.exports = [
   },
   {
     "id": "廖化",
-    "assetId": "h053",
+    "assetId": "h009",
     "name": "廖化",
     "camp": "蜀",
     "rank": "blue",
@@ -1590,7 +1590,7 @@ module.exports = [
   },
   {
     "id": "费祎",
-    "assetId": "h054",
+    "assetId": "h016",
     "name": "费祎",
     "camp": "蜀",
     "rank": "blue",
@@ -1620,7 +1620,7 @@ module.exports = [
   },
   {
     "id": "蒋琬",
-    "assetId": "h055",
+    "assetId": "h001",
     "name": "蒋琬",
     "camp": "蜀",
     "rank": "blue",
@@ -1650,7 +1650,7 @@ module.exports = [
   },
   {
     "id": "法正",
-    "assetId": "h056",
+    "assetId": "h002",
     "name": "法正",
     "camp": "蜀",
     "rank": "blue",
@@ -1680,7 +1680,7 @@ module.exports = [
   },
   {
     "id": "张任",
-    "assetId": "h057",
+    "assetId": "h003",
     "name": "张任",
     "camp": "蜀",
     "rank": "blue",
@@ -1710,7 +1710,7 @@ module.exports = [
   },
   {
     "id": "刘封",
-    "assetId": "h058",
+    "assetId": "h004",
     "name": "刘封",
     "camp": "蜀",
     "rank": "blue",
@@ -1740,7 +1740,7 @@ module.exports = [
   },
   {
     "id": "关平",
-    "assetId": "h059",
+    "assetId": "h006",
     "name": "关平",
     "camp": "蜀",
     "rank": "blue",
@@ -1770,7 +1770,7 @@ module.exports = [
   },
   {
     "id": "马谡",
-    "assetId": "h060",
+    "assetId": "h007",
     "name": "马谡",
     "camp": "蜀",
     "rank": "blue",
@@ -1800,7 +1800,7 @@ module.exports = [
   },
   {
     "id": "糜竺",
-    "assetId": "h061",
+    "assetId": "h008",
     "name": "糜竺",
     "camp": "蜀",
     "rank": "blue",
@@ -1830,7 +1830,7 @@ module.exports = [
   },
   {
     "id": "孟达",
-    "assetId": "h062",
+    "assetId": "h009",
     "name": "孟达",
     "camp": "蜀",
     "rank": "blue",
@@ -1860,7 +1860,7 @@ module.exports = [
   },
   {
     "id": "黄盖",
-    "assetId": "h063",
+    "assetId": "h016",
     "name": "黄盖",
     "camp": "吴",
     "rank": "blue",
@@ -1890,7 +1890,7 @@ module.exports = [
   },
   {
     "id": "凌统",
-    "assetId": "h064",
+    "assetId": "h001",
     "name": "凌统",
     "camp": "吴",
     "rank": "blue",
@@ -1919,7 +1919,7 @@ module.exports = [
   },
   {
     "id": "丁奉",
-    "assetId": "h065",
+    "assetId": "h002",
     "name": "丁奉",
     "camp": "吴",
     "rank": "blue",
@@ -1949,7 +1949,7 @@ module.exports = [
   },
   {
     "id": "程普",
-    "assetId": "h066",
+    "assetId": "h003",
     "name": "程普",
     "camp": "吴",
     "rank": "blue",
@@ -1979,7 +1979,7 @@ module.exports = [
   },
   {
     "id": "韩当",
-    "assetId": "h067",
+    "assetId": "h004",
     "name": "韩当",
     "camp": "吴",
     "rank": "blue",
@@ -2009,7 +2009,7 @@ module.exports = [
   },
   {
     "id": "诸葛瑾",
-    "assetId": "h068",
+    "assetId": "h006",
     "name": "诸葛瑾",
     "camp": "吴",
     "rank": "blue",
@@ -2039,7 +2039,7 @@ module.exports = [
   },
   {
     "id": "步骘",
-    "assetId": "h069",
+    "assetId": "h007",
     "name": "步骘",
     "camp": "吴",
     "rank": "blue",
@@ -2069,7 +2069,7 @@ module.exports = [
   },
   {
     "id": "陆抗",
-    "assetId": "h070",
+    "assetId": "h008",
     "name": "陆抗",
     "camp": "吴",
     "rank": "blue",
@@ -2099,7 +2099,7 @@ module.exports = [
   },
   {
     "id": "全琮",
-    "assetId": "h071",
+    "assetId": "h009",
     "name": "全琮",
     "camp": "吴",
     "rank": "blue",
@@ -2129,7 +2129,7 @@ module.exports = [
   },
   {
     "id": "孙翊",
-    "assetId": "h072",
+    "assetId": "h016",
     "name": "孙翊",
     "camp": "吴",
     "rank": "blue",
@@ -2159,7 +2159,7 @@ module.exports = [
   },
   {
     "id": "潘璋",
-    "assetId": "h073",
+    "assetId": "h001",
     "name": "潘璋",
     "camp": "吴",
     "rank": "blue",
@@ -2188,7 +2188,7 @@ module.exports = [
   },
   {
     "id": "徐盛",
-    "assetId": "h074",
+    "assetId": "h002",
     "name": "徐盛",
     "camp": "吴",
     "rank": "blue",
@@ -2218,7 +2218,7 @@ module.exports = [
   },
   {
     "id": "朱然",
-    "assetId": "h075",
+    "assetId": "h003",
     "name": "朱然",
     "camp": "吴",
     "rank": "blue",
@@ -2248,7 +2248,7 @@ module.exports = [
   },
   {
     "id": "吕范",
-    "assetId": "h076",
+    "assetId": "h004",
     "name": "吕范",
     "camp": "吴",
     "rank": "blue",
@@ -2278,7 +2278,7 @@ module.exports = [
   },
   {
     "id": "董卓",
-    "assetId": "h077",
+    "assetId": "h006",
     "name": "董卓",
     "camp": "群",
     "rank": "blue",
@@ -2308,7 +2308,7 @@ module.exports = [
   },
   {
     "id": "颜良",
-    "assetId": "h078",
+    "assetId": "h007",
     "name": "颜良",
     "camp": "群",
     "rank": "purple",
@@ -2338,7 +2338,7 @@ module.exports = [
   },
   {
     "id": "文丑",
-    "assetId": "h079",
+    "assetId": "h008",
     "name": "文丑",
     "camp": "群",
     "rank": "purple",
@@ -2368,7 +2368,7 @@ module.exports = [
   },
   {
     "id": "华雄",
-    "assetId": "h080",
+    "assetId": "h009",
     "name": "华雄",
     "camp": "群",
     "rank": "blue",
@@ -2398,7 +2398,7 @@ module.exports = [
   },
   {
     "id": "高顺",
-    "assetId": "h081",
+    "assetId": "h016",
     "name": "高顺",
     "camp": "群",
     "rank": "blue",
@@ -2428,7 +2428,7 @@ module.exports = [
   },
   {
     "id": "陈宫",
-    "assetId": "h082",
+    "assetId": "h001",
     "name": "陈宫",
     "camp": "群",
     "rank": "blue",
@@ -2458,7 +2458,7 @@ module.exports = [
   },
   {
     "id": "张鲁",
-    "assetId": "h083",
+    "assetId": "h002",
     "name": "张鲁",
     "camp": "群",
     "rank": "blue",
@@ -2488,7 +2488,7 @@ module.exports = [
   },
   {
     "id": "刘表",
-    "assetId": "h084",
+    "assetId": "h003",
     "name": "刘表",
     "camp": "群",
     "rank": "blue",
@@ -2518,7 +2518,7 @@ module.exports = [
   },
   {
     "id": "严颜",
-    "assetId": "h085",
+    "assetId": "h004",
     "name": "严颜",
     "camp": "群",
     "rank": "blue",
@@ -2548,7 +2548,7 @@ module.exports = [
   },
   {
     "id": "臧霸",
-    "assetId": "h086",
+    "assetId": "h006",
     "name": "臧霸",
     "camp": "群",
     "rank": "blue",
@@ -2578,7 +2578,7 @@ module.exports = [
   },
   {
     "id": "张绣",
-    "assetId": "h087",
+    "assetId": "h007",
     "name": "张绣",
     "camp": "群",
     "rank": "blue",
@@ -2608,7 +2608,7 @@ module.exports = [
   },
   {
     "id": "张角",
-    "assetId": "h088",
+    "assetId": "h008",
     "name": "张角",
     "camp": "群",
     "rank": "blue",
@@ -2638,7 +2638,7 @@ module.exports = [
   },
   {
     "id": "皇甫嵩",
-    "assetId": "h089",
+    "assetId": "h009",
     "name": "皇甫嵩",
     "camp": "群",
     "rank": "blue",
@@ -2668,7 +2668,7 @@ module.exports = [
   },
   {
     "id": "何进",
-    "assetId": "h090",
+    "assetId": "h016",
     "name": "何进",
     "camp": "群",
     "rank": "blue",
@@ -2698,7 +2698,7 @@ module.exports = [
   },
   {
     "id": "华歆",
-    "assetId": "h091",
+    "assetId": "h001",
     "name": "华歆",
     "camp": "魏",
     "rank": "blue",
@@ -2728,7 +2728,7 @@ module.exports = [
   },
   {
     "id": "王朗",
-    "assetId": "h092",
+    "assetId": "h002",
     "name": "王朗",
     "camp": "魏",
     "rank": "blue",
@@ -2758,7 +2758,7 @@ module.exports = [
   },
   {
     "id": "曹真",
-    "assetId": "h093",
+    "assetId": "h003",
     "name": "曹真",
     "camp": "魏",
     "rank": "blue",
@@ -2788,7 +2788,7 @@ module.exports = [
   },
   {
     "id": "曹休",
-    "assetId": "h094",
+    "assetId": "h004",
     "name": "曹休",
     "camp": "魏",
     "rank": "blue",
@@ -2818,7 +2818,7 @@ module.exports = [
   },
   {
     "id": "乐进",
-    "assetId": "h095",
+    "assetId": "h006",
     "name": "乐进",
     "camp": "魏",
     "rank": "blue",
@@ -2848,7 +2848,7 @@ module.exports = [
   },
   {
     "id": "李典",
-    "assetId": "h096",
+    "assetId": "h007",
     "name": "李典",
     "camp": "魏",
     "rank": "blue",
@@ -2878,7 +2878,7 @@ module.exports = [
   },
   {
     "id": "邓艾",
-    "assetId": "h097",
+    "assetId": "h008",
     "name": "邓艾",
     "camp": "魏",
     "rank": "blue",
@@ -2908,7 +2908,7 @@ module.exports = [
   },
   {
     "id": "钟会",
-    "assetId": "h098",
+    "assetId": "h009",
     "name": "钟会",
     "camp": "魏",
     "rank": "blue",
@@ -2938,7 +2938,7 @@ module.exports = [
   },
   {
     "id": "曹彰",
-    "assetId": "h099",
+    "assetId": "h016",
     "name": "曹彰",
     "camp": "魏",
     "rank": "blue",
@@ -2968,7 +2968,7 @@ module.exports = [
   },
   {
     "id": "曹植",
-    "assetId": "h100",
+    "assetId": "h001",
     "name": "曹植",
     "camp": "魏",
     "rank": "blue",
@@ -2998,7 +2998,7 @@ module.exports = [
   },
   {
     "id": "简雍",
-    "assetId": "h101",
+    "assetId": "h002",
     "name": "简雍",
     "camp": "蜀",
     "rank": "blue",

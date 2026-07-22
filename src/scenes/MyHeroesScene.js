@@ -5,7 +5,6 @@ const Toast = require('../ui/Toast');
 const ScrollHelper = require('../core/ScrollHelper');
 const { drawHeroChip } = require('../ui/HeroChip');
 const { drawCloudDivider } = require('../ui/art');
-const heroes = require('../data/heroes');
 const PlayerData = require('../systems/PlayerData');
 const ImageLoader = require('../core/ImageLoader');
 const { COLORS, FONT, SPACING, RADIUS } = require('../ui/theme');
@@ -15,16 +14,26 @@ const CHIP_GAP = 12;
 const CHIP_H = 155;
 const TOP_MARGIN = 105;
 
-function createRosterScene(sceneManager) {
+function createMyHeroesScene(sceneManager) {
   let buttons = [];
   const scroller = new ScrollHelper();
   let chipW = 0;
   let gridTop = 0;
+  let myHeroes = [];
 
   function layout() {
+    const rankOrder = { orange: 0, purple: 1, blue: 2 };
+    myHeroes = PlayerData.ownedList()
+      .map((e) => e.hero)
+      .filter(Boolean)
+      .sort((a, b) => {
+        if (rankOrder[a.rank] !== rankOrder[b.rank]) return rankOrder[a.rank] - rankOrder[b.rank];
+        return a.name.localeCompare(b.name, 'zh');
+      });
+
     chipW = (Screen.width - 16 * 2 - (COLS - 1) * CHIP_GAP) / COLS;
     gridTop = HeaderBar.HEIGHT + TOP_MARGIN;
-    const rows = Math.ceil(heroes.length / COLS);
+    const rows = Math.ceil(myHeroes.length / COLS);
     const gridHeight = rows * (CHIP_H + CHIP_GAP);
     scroller.setMaxScroll(gridHeight - (Screen.height - gridTop - 60));
     buttons = [
@@ -40,8 +49,8 @@ function createRosterScene(sceneManager) {
     onEnter() {
       layout();
       const visibleRows = Math.ceil((Screen.height - gridTop) / (CHIP_H + CHIP_GAP));
-      const preloadCount = Math.min(heroes.length, (visibleRows + 1) * COLS);
-      ImageLoader.preloadPortraits(heroes.slice(0, preloadCount));
+      const preloadCount = Math.min(myHeroes.length, (visibleRows + 1) * COLS);
+      ImageLoader.preloadPortraits(myHeroes.slice(0, preloadCount));
     },
     onResume() {
       layout();
@@ -61,14 +70,21 @@ function createRosterScene(sceneManager) {
       ctx.textAlign = 'center';
       ctx.fillStyle = COLORS.textGold;
       ctx.font = 'bold 26px serif';
-      ctx.fillText('武将图鉴', Screen.width / 2, HeaderBar.HEIGHT + 32);
+      ctx.fillText('我的武将', Screen.width / 2, HeaderBar.HEIGHT + 32);
 
-      const ownedCount = PlayerData.ownedList().length;
       ctx.font = '13px sans-serif';
       ctx.fillStyle = COLORS.textMuted;
-      ctx.fillText(`已拥有 ${ownedCount}/${heroes.length}`, Screen.width / 2, HeaderBar.HEIGHT + 56);
+      ctx.fillText(`共 ${myHeroes.length} 位`, Screen.width / 2, HeaderBar.HEIGHT + 56);
 
       drawCloudDivider(ctx, Screen.width / 2 - 40, HeaderBar.HEIGHT + 70, 80);
+
+      if (myHeroes.length === 0) {
+        ctx.font = '16px serif';
+        ctx.fillStyle = COLORS.textMuted;
+        ctx.fillText('尚未拥有任何武将', Screen.width / 2, Screen.height / 2);
+        ctx.font = '14px sans-serif';
+        ctx.fillText('快去金币召唤吧！', Screen.width / 2, Screen.height / 2 + 30);
+      }
 
       ctx.save();
       ctx.beginPath();
@@ -78,22 +94,22 @@ function createRosterScene(sceneManager) {
       const scrollY = scroller.scrollY;
       const firstRow = Math.max(0, Math.floor(scrollY / (CHIP_H + CHIP_GAP)) - 1);
       const lastRow = Math.min(
-        Math.ceil(heroes.length / COLS) - 1,
+        Math.ceil(myHeroes.length / COLS) - 1,
         Math.ceil((scrollY + Screen.height - gridTop) / (CHIP_H + CHIP_GAP)) + 1
       );
 
       for (let row = firstRow; row <= lastRow; row++) {
         for (let col = 0; col < COLS; col++) {
           const i = row * COLS + col;
-          if (i >= heroes.length) break;
-          const hero = heroes[i];
+          if (i >= myHeroes.length) break;
+          const hero = myHeroes[i];
           const x = 16 + col * (chipW + CHIP_GAP);
           const y = gridTop + row * (CHIP_H + CHIP_GAP) - scrollY;
           if (y + CHIP_H < gridTop || y > Screen.height) continue;
           const owned = PlayerData.state.ownedHeroes[hero.id];
           drawHeroChip(ctx, hero, x, y, chipW, CHIP_H, {
             star: owned ? owned.star : 0,
-            locked: !owned,
+            locked: false,
           });
         }
       }
@@ -119,16 +135,12 @@ function createRosterScene(sceneManager) {
       const row = Math.floor((y + scroller.scrollY - gridTop) / (CHIP_H + CHIP_GAP));
       if (col < 0 || col >= COLS) return;
       const index = row * COLS + col;
-      const hero = heroes[index];
+      const hero = myHeroes[index];
       if (!hero) return;
-      if (!PlayerData.isOwned(hero.id)) {
-        Toast.show('尚未拥有该武将');
-        return;
-      }
       const HeroDetailScene = require('./HeroDetailScene');
       sceneManager.push(HeroDetailScene(sceneManager, hero));
     },
   };
 }
 
-module.exports = createRosterScene;
+module.exports = createMyHeroesScene;
