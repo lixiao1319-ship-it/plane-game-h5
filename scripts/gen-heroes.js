@@ -117,6 +117,11 @@ for (const [name, st] of Object.entries(stats)) {
   const rank = st.tongyu >= 7 ? 'orange' : st.tongyu === 6 ? 'purple' : 'blue';
   heroes.push({
     id: name,
+    // ASCII-only slug for filesystem/URL use (e.g. portrait filenames). WeChat
+    // DevTools' local dev server mishandles non-ASCII characters in Image.src
+    // paths (percent-encodes them but doesn't decode on file lookup), so any
+    // asset referenced by hero must use this instead of the Chinese `id`.
+    assetId: `h${String(heroes.length + 1).padStart(3, '0')}`,
     name,
     camp: st.camp,
     rank,

@@ -16,7 +16,7 @@ function drawHeroChip(ctx, hero, x, y, w, h, opts) {
   const px = x + (w - portraitSize) / 2;
   const py = y + 10;
 
-  const portrait = ImageLoader.requestPortrait(hero.id);
+  const portrait = ImageLoader.requestPortrait(hero.assetId);
   if (portrait.status === 'loaded') {
     ctx.save();
     roundRect(ctx, px, py, portraitSize, portraitSize, 8);

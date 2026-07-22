@@ -1,50 +1,52 @@
-// Lazily loads hero portraits by convention: assets/portraits/<heroId>.<ext>.
-// Art is swappable with zero code changes — just add/replace a file named
-// after the hero's id (its Chinese name) under assets/portraits/. Missing
-// art fails gracefully so HeroChip can fall back to the placeholder render.
+// Lazily loads hero portraits by convention: assets/portraits/<assetId>.<ext>.
+//
+// IMPORTANT: keyed by hero.assetId (an ASCII slug like "h001"), never by the
+// Chinese hero.id/name. WeChat DevTools' local dev server percent-encodes
+// non-ASCII characters when Image.src is assigned but does NOT decode them
+// back when resolving the file on disk, so a path built from a Chinese hero
+// name reliably 404s in local dev even though the real file exists
+// (see docs/hero-asset-ids.md for the assetId -> hero name lookup table).
+//
+// Art is still swappable with zero code changes — just add/replace a file
+// named after the hero's assetId under assets/portraits/. Missing art fails
+// gracefully so HeroChip falls back to the placeholder render.
 
 const BASE_PATH = 'assets/portraits/';
 const EXTENSIONS = ['png', 'jpg', 'jpeg'];
 
-const cache = {}; // heroId -> { status: 'pending' | 'loaded' | 'failed', image }
+const cache = {}; // assetId -> { status: 'pending' | 'loaded' | 'failed', image }
 
 function canLoadImages() {
   return typeof wx !== 'undefined' && typeof wx.createImage === 'function';
 }
 
-function tryNextExtension(heroId, extIndex, entry) {
+function tryNextExtension(assetId, extIndex, entry) {
   if (extIndex >= EXTENSIONS.length) {
     entry.status = 'failed';
-    console.warn(`[ImageLoader] 未找到「${heroId}」头像，已尝试: ${EXTENSIONS.map((e) => `${BASE_PATH}${heroId}.${e}`).join(', ')}`);
     return;
   }
   const img = wx.createImage();
-  const path = `${BASE_PATH}${heroId}.${EXTENSIONS[extIndex]}`;
+  const path = `${BASE_PATH}${assetId}.${EXTENSIONS[extIndex]}`;
   img.onload = () => {
     entry.status = 'loaded';
     entry.image = img;
-    console.log(`[ImageLoader] 加载成功: ${path}`);
   };
-  img.onerror = (err) => {
-    console.warn(`[ImageLoader] 加载失败: ${path}`, err && err.errMsg ? err.errMsg : err);
-    tryNextExtension(heroId, extIndex + 1, entry);
-  };
+  img.onerror = () => tryNextExtension(assetId, extIndex + 1, entry);
   img.src = path;
 }
 
 // Returns the cache entry immediately ({status, image}); triggers async load
-// on first call for a given heroId. Callers should just check status each render.
-function requestPortrait(heroId) {
-  if (cache[heroId]) return cache[heroId];
+// on first call for a given assetId. Callers should just check status each render.
+function requestPortrait(assetId) {
+  if (cache[assetId]) return cache[assetId];
   if (!canLoadImages()) {
-    console.warn('[ImageLoader] wx.createImage 不可用，当前环境无法加载图片');
     const entry = { status: 'failed', image: null };
-    cache[heroId] = entry;
+    cache[assetId] = entry;
     return entry;
   }
   const entry = { status: 'pending', image: null };
-  cache[heroId] = entry;
-  tryNextExtension(heroId, 0, entry);
+  cache[assetId] = entry;
+  tryNextExtension(assetId, 0, entry);
   return entry;
 }
 
