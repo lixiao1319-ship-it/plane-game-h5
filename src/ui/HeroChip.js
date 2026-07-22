@@ -30,9 +30,11 @@ function drawHeroChip(ctx, hero, x, y, w, h, opts) {
   ctx.textBaseline = 'middle';
   ctx.fillText(rankInfo.badge, x + 6 + badgeSize / 2, y + 6 + badgeSize / 2 + 1);
 
-  const portraitSize = Math.min(w - 16, h * 0.55);
+  // Portrait is sized larger relative to the card than before so the art reads
+  // clearly even in small grid cells.
+  const portraitSize = Math.min(w - 10, h * 0.66);
   const px = x + (w - portraitSize) / 2;
-  const py = y + 10;
+  const py = y + 8;
 
   const portrait = ImageLoader.requestPortrait(hero.assetId);
   if (portrait.status === 'loaded') {
@@ -40,11 +42,40 @@ function drawHeroChip(ctx, hero, x, y, w, h, opts) {
     roundRect(ctx, px, py, portraitSize, portraitSize, RADIUS.small);
     ctx.clip();
     drawCoverImage(ctx, portrait.image, px, py, portraitSize, portraitSize);
+
+    // Rank-color wash over the art — ties the character into the rank
+    // palette instead of leaving a plain unaccented photo in the frame.
+    const tint = ctx.createLinearGradient(px, py, px, py + portraitSize);
+    tint.addColorStop(0, 'rgba(0,0,0,0)');
+    tint.addColorStop(0.6, 'rgba(0,0,0,0)');
+    tint.addColorStop(1, rankInfo.glow);
+    ctx.fillStyle = tint;
+    ctx.fillRect(px, py, portraitSize, portraitSize);
+
+    const rim = ctx.createLinearGradient(px, py, px + portraitSize, py + portraitSize);
+    rim.addColorStop(0, rankInfo.dim);
+    rim.addColorStop(0.5, 'rgba(0,0,0,0)');
+    rim.addColorStop(1, rankInfo.dim);
+    ctx.fillStyle = rim;
+    ctx.fillRect(px, py, portraitSize, portraitSize);
     ctx.restore();
+
     // Rank-colored inner border on portrait
     ctx.strokeStyle = rankInfo.main;
-    ctx.lineWidth = 1.5;
+    ctx.lineWidth = 2;
     roundRect(ctx, px, py, portraitSize, portraitSize, RADIUS.small);
+    ctx.stroke();
+
+    // Small rank gem accent at the bottom-right corner of the portrait.
+    const gemR = 8;
+    const gx = px + portraitSize - gemR - 4;
+    const gy = py + portraitSize - gemR - 4;
+    ctx.beginPath();
+    ctx.arc(gx, gy, gemR, 0, Math.PI * 2);
+    ctx.fillStyle = rankInfo.main;
+    ctx.fill();
+    ctx.strokeStyle = '#1a1a2e';
+    ctx.lineWidth = 1.5;
     ctx.stroke();
   } else {
     // Placeholder with rank gradient
