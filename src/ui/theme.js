@@ -37,6 +37,8 @@ const COLORS = {
       glow: 'rgba(232,168,56,0.35)',
       dim: 'rgba(232,168,56,0.15)',
       gradient: ['#f0c060', '#c88820'],
+      cardBg: ['#3d2a12', '#20160a'],
+      badge: '橙',
       label: '橙色·传说',
     },
     purple: {
@@ -44,6 +46,8 @@ const COLORS = {
       glow: 'rgba(168,120,232,0.30)',
       dim: 'rgba(168,120,232,0.15)',
       gradient: ['#c090f0', '#8858d0'],
+      cardBg: ['#2e2048', '#170f28'],
+      badge: '紫',
       label: '紫色·史诗',
     },
     blue: {
@@ -51,6 +55,8 @@ const COLORS = {
       glow: 'rgba(88,152,216,0.25)',
       dim: 'rgba(88,152,216,0.15)',
       gradient: ['#78b0e8', '#3870b8'],
+      cardBg: ['#123048', '#0a1826'],
+      badge: '蓝',
       label: '蓝色·精良',
     },
   },

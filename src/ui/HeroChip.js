@@ -9,15 +9,26 @@ function drawHeroChip(ctx, hero, x, y, w, h, opts) {
   opts = opts || {};
   const rankInfo = COLORS.rank[hero.rank];
 
-  // Card background — dark ink with subtle gradient
+  // Card background — tinted with the hero's rank color (not a flat black),
+  // so orange/purple/blue heroes are visually distinct at a glance.
   const bgGrad = ctx.createLinearGradient(x, y, x, y + h);
-  bgGrad.addColorStop(0, 'rgba(0,0,0,0.4)');
-  bgGrad.addColorStop(1, 'rgba(0,0,0,0.2)');
+  bgGrad.addColorStop(0, rankInfo.cardBg[0]);
+  bgGrad.addColorStop(1, rankInfo.cardBg[1]);
   ctx.fillStyle = bgGrad;
   fillRoundRect(ctx, x, y, w, h, RADIUS.small, bgGrad);
 
   // Quality border + glow
   drawQualityFrame(ctx, x, y, w, h, hero.rank, RADIUS.small);
+
+  // Rank corner badge — small colored tab in the top-left so rank reads even
+  // before the portrait/border registers (helps at small chip sizes too).
+  const badgeSize = 22;
+  fillRoundRect(ctx, x + 6, y + 6, badgeSize, badgeSize, 6, rankInfo.main);
+  ctx.fillStyle = '#1a1a2e';
+  ctx.font = 'bold 13px serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(rankInfo.badge, x + 6 + badgeSize / 2, y + 6 + badgeSize / 2 + 1);
 
   const portraitSize = Math.min(w - 16, h * 0.55);
   const px = x + (w - portraitSize) / 2;
@@ -30,8 +41,8 @@ function drawHeroChip(ctx, hero, x, y, w, h, opts) {
     ctx.clip();
     drawCoverImage(ctx, portrait.image, px, py, portraitSize, portraitSize);
     ctx.restore();
-    // Gold inner border on portrait
-    ctx.strokeStyle = 'rgba(212,175,55,0.5)';
+    // Rank-colored inner border on portrait
+    ctx.strokeStyle = rankInfo.main;
     ctx.lineWidth = 1.5;
     roundRect(ctx, px, py, portraitSize, portraitSize, RADIUS.small);
     ctx.stroke();
